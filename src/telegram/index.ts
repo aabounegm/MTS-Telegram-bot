@@ -1,16 +1,22 @@
 import { Telegraf, Markup, type TelegramError } from 'telegraf';
 import { dev } from '$app/environment';
-import { TELEGRAM_BOT_TOKEN } from '$env/static/private';
+import { TELEGRAM_BOT_TOKEN, BASE_URL } from '$env/static/private';
 
 const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
-bot.start((ctx) =>
+bot.start((ctx) => {
 	ctx.reply(
 		'Welcome!',
-		Markup.inlineKeyboard([
-			Markup.button.url('Open site', 'https://dev.guvictory-frontend-hub.ru'),
-		]),
-	),
-);
+		Markup.keyboard(
+			[
+				Markup.button.webApp('Fines', `${BASE_URL}/fines`),
+				Markup.button.webApp('Charities', `${BASE_URL}/charities`),
+			],
+			{
+				columns: 2,
+			},
+		).resize(true),
+	);
+});
 
 export async function startBot() {
 	console.log('Starting Telegram bot...');
