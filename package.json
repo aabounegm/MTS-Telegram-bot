@@ -31,5 +31,8 @@
 		"vite": "^4.0.0",
 		"vitest": "^0.25.3"
 	},
+	"dependencies": {
+		"telegraf": "^4.12.1"
+	},
 	"type": "module"
 }
