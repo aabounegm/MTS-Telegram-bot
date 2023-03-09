@@ -1,29 +1,19 @@
-# create-svelte
+# MTS Telegram bot
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+This project is a Telegram bot web app for the [pay.mos.ru](https://pay.mos.ru/) service managed by MTS.
+It allows users of the portal to pay their fines and donate to charities through the Telegram bot.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've installed the dependencies with `npm install`, start a development server:
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
+
+For the Telegram bot (using polling method) to run, you need to access the dev server at least once in the beginning to run the script in [`hooks.server.ts`](./src/hooks.server.ts).
+
+Since the bot only works with HTTPS (unless you setup a testing account on a Telegram test server), the web app development must be done on the production server.
 
 ## Building
 
@@ -35,4 +25,4 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+It can also be run using `node build`.
