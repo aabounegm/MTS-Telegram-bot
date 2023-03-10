@@ -32,7 +32,7 @@
 		<input name="password" id="password" type="password" bind:value={password} />
 
 		<button type="submit">
-			{#if isLoading}Logging in...{:else}Log in 🔒{/if}
+			{#if isLoading}Logging in...{:else}Log in{/if}
 		</button>
 	{/if}
 </form>
