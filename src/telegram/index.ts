@@ -1,16 +1,45 @@
-import { Telegraf, Markup, type TelegramError } from 'telegraf';
+import { Telegraf, Markup, session, type TelegramError, type Context } from 'telegraf';
+import type { Update } from 'telegraf/types';
 import { dev } from '$app/environment';
 import { TELEGRAM_BOT_TOKEN, BASE_URL } from '$env/static/private';
 
-const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
+interface MyContext<U extends Update = Update> extends Context<U> {
+	session: {
+		loggedIn: boolean;
+	};
+}
+
+const bot = new Telegraf<MyContext>(TELEGRAM_BOT_TOKEN);
+bot.use(session({ defaultSession: () => ({ loggedIn: false as boolean }) }));
+
 bot.start((ctx) => {
 	ctx.reply(
 		'Welcome!',
 		Markup.keyboard(
-			[
-				Markup.button.webApp('Fines', `${BASE_URL}/fines`),
-				Markup.button.webApp('Charities', `${BASE_URL}/charities`),
-			],
+			!ctx.session.loggedIn
+				? [Markup.button.webApp('Login', `${BASE_URL}/login`)]
+				: [
+						Markup.button.webApp('Fines', `${BASE_URL}/fines`),
+						Markup.button.webApp('Charities', `${BASE_URL}/charities`),
+				  ],
+			{
+				columns: 2,
+			},
+		).resize(true),
+	);
+});
+
+bot.command('login', async (ctx) => {
+	ctx.session.loggedIn = true;
+	await ctx.reply(
+		'Logged In!',
+		Markup.keyboard(
+			!ctx.session.loggedIn
+				? [Markup.button.webApp('Login', `${BASE_URL}/login`)]
+				: [
+						Markup.button.webApp('Fines', `${BASE_URL}/fines`),
+						Markup.button.webApp('Charities', `${BASE_URL}/charities`),
+				  ],
 			{
 				columns: 2,
 			},
