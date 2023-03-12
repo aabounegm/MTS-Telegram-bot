@@ -7,9 +7,7 @@
 	<label for="password">Password</label>
 	<input name="password" id="password" type="password" />
 
-	<button type="submit">
-		Log in
-	</button>
+	<button type="submit">Log in</button>
 </form>
 
 <style>
@@ -56,18 +54,14 @@
 		border: none;
 		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 	}
-    button:hover {
+	button:hover {
 		box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.25);
 	}
-    button:active {
+	button:active {
 		box-shadow: inset 2px 3px rgba(0, 0, 0, 0.25);
 	}
-    h1 {
+	h1 {
 		margin: 10px 20px 30px 20px;
 		font-size: 40px;
-	}
-	.success {
-		font-size: 24px;
-		text-align: center;
 	}
 </style>
