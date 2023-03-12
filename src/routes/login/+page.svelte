@@ -1,40 +1,15 @@
-<script lang="ts">
-	let email = '';
-	let password = '';
-	let isLoading = false;
-	let isSuccess = false;
+<form method="POST">
+	<h1>👤</h1>
 
-	let errors = {
-		email: undefined,
-		password: undefined,
-	};
+	<label for="email">Email</label>
+	<input name="email" id="email" placeholder="name@example.com" />
 
-	const handleSubmit = () => {
-		console.log('Email:', email);
-		console.log('Password: ', password);
-	};
-</script>
+	<label for="password">Password</label>
+	<input name="password" id="password" type="password" />
 
-<form on:submit|preventDefault={handleSubmit}>
-	{#if isSuccess}
-		<div class="success">
-			🔓
-			<br />
-			You've been successfully logged in.
-		</div>
-	{:else}
-		<h1>👤</h1>
-
-		<label for="email">Email</label>
-		<input name="email" id="email" placeholder="name@example.com" bind:value={email} />
-
-		<label for="password">Password</label>
-		<input name="password" id="password" type="password" bind:value={password} />
-
-		<button type="submit">
-			{#if isLoading}Logging in...{:else}Log in{/if}
-		</button>
-	{/if}
+	<button type="submit">
+		Log in
+	</button>
 </form>
 
 <style>
@@ -84,10 +59,10 @@
     button:hover {
 		box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.25);
 	}
-	button:active {
+    button:active {
 		box-shadow: inset 2px 3px rgba(0, 0, 0, 0.25);
 	}
-	h1 {
+    h1 {
 		margin: 10px 20px 30px 20px;
 		font-size: 40px;
 	}
