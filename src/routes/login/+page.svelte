@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	let email = '';
 	let password = '';
 	let isLoading = false;
@@ -81,7 +81,7 @@
 		border: none;
 		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 	}
-	button:hover {
+    button:hover {
 		box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.25);
 	}
 	button:active {

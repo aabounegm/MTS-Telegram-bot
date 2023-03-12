@@ -28,23 +28,6 @@ bot.start((ctx) => {
 	);
 });
 
-bot.command('login', async (ctx) => {
-	ctx.session.loggedIn = true;
-	await ctx.reply(
-		'Logged In!',
-		Markup.keyboard(
-			[
-				Markup.button.webApp('Fines', `${BASE_URL}/fines` /* !ctx.session.loggedIn */),
-				Markup.button.webApp('Charities', `${BASE_URL}/charities` /* !ctx.session.loggedIn */),
-				Markup.button.webApp('Login', `${BASE_URL}/login` /* ctx.session.loggedIn */),
-			],
-			{
-				columns: 2,
-			},
-		).resize(true),
-	);
-});
-
 export async function startBot() {
 	console.log('Starting Telegram bot...');
 	// This hack is to get hot reloading to work with the bot during development
