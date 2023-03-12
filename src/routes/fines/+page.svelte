@@ -1,9 +1,9 @@
 <script lang="ts">
-    import type { PageData } from './$types';
+	import type { PageData } from './$types';
 
-    export let data: PageData;
+	export let data: PageData;
 
-    let user = JSON.parse(data.user);
+	const { user } = data;
 </script>
 
 <h1>Fines</h1>

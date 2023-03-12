@@ -4,6 +4,7 @@ import { redirect } from '@sveltejs/kit';
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {
 		const data = await request.formData();
+		// TODO: replace setting the whole user object with just a token/identifier
 		cookies.set(
 			'user',
 			JSON.stringify({
