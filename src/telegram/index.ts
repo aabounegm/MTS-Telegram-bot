@@ -1,6 +1,6 @@
 import { Telegraf, Markup, session, type TelegramError, type Context } from 'telegraf';
 import type { Update } from 'telegraf/types';
-import { dev } from '$app/environment';
+import { dev, building } from '$app/environment';
 import { TELEGRAM_BOT_TOKEN, BASE_URL } from '$env/static/private';
 
 interface MyContext<U extends Update = Update> extends Context<U> {
@@ -29,6 +29,7 @@ bot.start((ctx) => {
 });
 
 export async function startBot() {
+	if (building) return;
 	console.log('Starting Telegram bot...');
 	// This hack is to get hot reloading to work with the bot during development
 	try {
