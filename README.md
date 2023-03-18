@@ -25,4 +25,4 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-It can also be run using `node build`.
+The recommended way to run the production build is using `npm start` because it also sets the appropriate headers for CSRF protection.
