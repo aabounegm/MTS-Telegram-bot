@@ -1,7 +1,5 @@
 <script lang="ts" context="module">
-	import type { TCharity } from '$lib/types/charity';
-
-	const charityLogoUrl = 'https://test.mospay.mos.ru/mospaynew/newportal/assets/images/charity/';
+	import { type TCharity, FUNDS_ASSETS_BASE } from '$lib/types/charity';
 
 	export const charityPrograms: TCharity[] = [
 		{
@@ -15,7 +13,7 @@
 					serviceDescription:
 						'Обеспечение нового качества жизни и реабилитации слепоглухих путем развития инновационных отечественных ассистивных технологий и проведения перспективных исследований в области комплексной социализации инвалидов с нарушенным слухом и зрением',
 					fundUrl: 'https://so-edinenie.org/o-fonde/programmi/nauka-obrazovanie-i-tehnologii',
-					fundLogo: charityLogoUrl + encodeURIComponent('logo color-1@2x.png'),
+					fundLogo: FUNDS_ASSETS_BASE + encodeURIComponent('logo color-1@2x.png'),
 					minimum: 1,
 				},
 			],
