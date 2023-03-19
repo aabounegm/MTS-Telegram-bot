@@ -1,9 +1,9 @@
 <script lang="ts" context="module">
-	import { type TCharityProgram } from '$lib/types/Charity';
+	import type { TCharity } from '$lib/types/charity';
 
 	const charityLogoUrl = 'https://test.mospay.mos.ru/mospaynew/newportal/assets/images/charity/';
 
-	export const charityPrograms: TCharityProgram[] = [
+	export const charityPrograms: TCharity[] = [
 		{
 			code: 'ADULTS0001',
 			name: 'Взрослые',
