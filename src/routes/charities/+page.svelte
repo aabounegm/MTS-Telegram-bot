@@ -4,7 +4,7 @@
 
 	export let data: PageData;
 
-	const copyFoundUrl = (text: string) => {
+	const copyCharityUrl = (text: string) => {
 		navigator.clipboard.writeText(text);
 	};
 </script>
@@ -19,7 +19,7 @@
 				<h2 class="program__title">{fundName}</h2>
 
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div class="program__copy" on:click={() => copyFoundUrl(fundUrl)}>
+				<div class="program__copy" on:click={() => copyCharityUrl(fundUrl)}>
 					<CopyIcon />
 				</div>
 			</div>
