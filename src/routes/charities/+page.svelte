@@ -1,24 +1,7 @@
-<script lang="ts" context="module">
-	import { type TCharity, FUNDS_ASSETS_BASE } from '$lib/types/charity';
+<script lang="ts">
+	import type { PageData } from './$types';
 
-	export const charityPrograms: TCharity[] = [
-		{
-			code: 'ADULTS0001',
-			name: 'Взрослые',
-			programs: [
-				{
-					serviceName: 'Наука, образование и технологии',
-					serviceCode: 'AAAA99341800000000001',
-					fundName: 'Фонд поддержки слепоглухих «Со-единение»',
-					serviceDescription:
-						'Обеспечение нового качества жизни и реабилитации слепоглухих путем развития инновационных отечественных ассистивных технологий и проведения перспективных исследований в области комплексной социализации инвалидов с нарушенным слухом и зрением',
-					fundUrl: 'https://so-edinenie.org/o-fonde/programmi/nauka-obrazovanie-i-tehnologii',
-					fundLogo: FUNDS_ASSETS_BASE + encodeURIComponent('logo color-1@2x.png'),
-					minimum: 1,
-				},
-			],
-		},
-	];
+	export let data: PageData;
 
 	const copyFoundUrl = (text: string) => {
 		navigator.clipboard.writeText(text);
@@ -28,32 +11,24 @@
 <div class="charities">
 	<h1 class="charities__title">Charities</h1>
 
-	{#await charityPrograms}
-		<p>...loading</p>
-	{:then result}
-		{#each result as charityProgram}
-			{#each charityProgram.programs as program}
-				<div class="program" id={program.serviceCode}>
-					<div class="program__info">
-						<img class="program__logo" src={program.fundLogo} alt={program.fundName} />
-						<h2 class="program__title">{program.fundName}</h2>
+	{#each data.flatMap((c) => c.programs) as { serviceCode, fundLogo, fundName, serviceDescription, fundUrl }}
+		<div class="program" id={serviceCode}>
+			<div class="program__info">
+				<img class="program__logo" src={fundLogo} alt={fundName} />
+				<h2 class="program__title">{fundName}</h2>
 
-						<!-- svelte-ignore a11y-click-events-have-key-events -->
-						<div class="program__copy" on:click={() => copyFoundUrl(program.fundUrl)}>
-							<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-								><path
-									d="M6 6V2c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4v4a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h4zm2 0h4a2 2 0 0 1 2 2v4h4V2H8v4zM2 8v10h10V8H2z"
-								/></svg
-							>
-						</div>
-					</div>
-					<p class="program__description">{program.serviceDescription}</p>
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<div class="program__copy" on:click={() => copyFoundUrl(fundUrl)}>
+					<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+						><path
+							d="M6 6V2c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4v4a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h4zm2 0h4a2 2 0 0 1 2 2v4h4V2H8v4zM2 8v10h10V8H2z"
+						/></svg
+					>
 				</div>
-			{/each}
-		{/each}
-	{:catch error}
-		<p>Upps! {error}</p>
-	{/await}
+			</div>
+			<p class="program__description">{serviceDescription}</p>
+		</div>
+	{/each}
 </div>
 
 <style>
