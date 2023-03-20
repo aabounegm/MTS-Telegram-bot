@@ -12,8 +12,8 @@
 <div class="charities">
 	<h1 class="charities__title">Charities</h1>
 
-	{#each data.data.flatMap((c) => c.programs) as { serviceCode, fundLogo, fundName, serviceDescription, fundUrl }}
-		<div class="program" id={serviceCode}>
+	{#each data.charities.flatMap((c) => c.programs) as { serviceCode, fundLogo, fundName, serviceDescription, fundUrl }}
+		<a class="program" id={serviceCode} href="/charities/{serviceCode}">
 			<div class="program__info">
 				<img class="program__logo" src={fundLogo} alt={fundName} />
 				<h2 class="program__title">{fundName}</h2>
@@ -24,7 +24,7 @@
 				</div>
 			</div>
 			<p class="program__description">{serviceDescription}</p>
-		</div>
+		</a>
 	{/each}
 </div>
 
