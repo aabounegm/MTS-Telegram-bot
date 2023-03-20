@@ -4,8 +4,194 @@
 	export let data: PageData;
 
 	$: program = data.charityProgram;
+
+	let value: number | null = null;
+
+	const handleAmountTokenClick = (amount: number) => {
+		value = amount;
+	};
+
+	const amountTokens = [
+		{
+			title: '50 ₽',
+			amount: 50,
+		},
+		{
+			title: '100 ₽',
+			amount: 100,
+		},
+		{
+			title: '200 ₽',
+			amount: 200,
+		},
+		{
+			title: '500 ₽',
+			amount: 500,
+		},
+	];
 </script>
 
-<p>Organization: {program.fundName}</p>
-<p>Name: {program.serviceName}</p>
-<p>Description: {program.serviceDescription}</p>
+<div class="charityPay">
+	<div class="charityPay__content">
+		<span class="charityPay__subtitle">{program.fundName}</span>
+		<div class="charityPay__header">
+			<h1 class="charityPay__title">{program.serviceName}</h1>
+			<a href="/charities" class="charityPay__link">Back</a>
+		</div>
+		<p class="charityPay__description">{program.serviceDescription}</p>
+		<div class="charityPay__pay">
+			<h2 class="charityPay__pay_title">Select amount to donate</h2>
+			<input placeholder="250 ₽" class="charityPay__pay_input" type="number" {value} />
+			<div class="charityPay__pay_amounts">
+				{#each amountTokens as { title, amount }}
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<span on:click={() => handleAmountTokenClick(amount)} class="charityPay__pay_token">
+						{title}
+					</span>
+				{/each}
+			</div>
+		</div>
+	</div>
+	<button class="charityPay__button">Pay</button>
+</div>
+
+<style>
+	.charityPay {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.charityPay__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+	}
+
+	.charityPay__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		width: 100%;
+	}
+
+	.charityPay__title {
+		font-weight: 600;
+		font-size: 26px;
+		line-height: 31px;
+		color: #222222;
+	}
+
+	.charityPay__subtitle {
+		align-self: self-start;
+		font-weight: 300;
+		font-size: 18px;
+		line-height: 20px;
+		color: #444444;
+	}
+
+	.charityPay__description {
+		width: calc(100% - 24px);
+
+		background-color: #f6f6f6;
+		padding: 8px 12px;
+		border-radius: 10px;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.05);
+
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 18px;
+		color: #666666;
+	}
+
+	.charityPay__pay {
+		width: calc(100% - 30px);
+		padding: 20px 15px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		background-color: #f6f6f6;
+		border-radius: 10px;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.05);
+	}
+
+	.charityPay__pay_title {
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 24px;
+		text-align: center;
+		margin-top: 0;
+		margin-bottom: 20px;
+
+		color: #666666;
+	}
+
+	.charityPay__pay_input {
+		width: calc(100% - 30px);
+		background: #f1f1f1;
+		padding: 10px 12px;
+		border: 0.5px solid #aaaaaa;
+		border-radius: 10px;
+	}
+
+	.charityPay__pay_input:focus {
+		outline: 0;
+		border: 1px solid #e30611;
+	}
+
+	.charityPay__pay_amounts {
+		width: 100%;
+		margin-top: 10px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 6px;
+	}
+
+	.charityPay__link {
+		text-decoration: none;
+	}
+
+	.charityPay__pay_token,
+	.charityPay__link {
+		width: max-content;
+		padding: 4px 11px;
+		color: #ffffff;
+		background-color: #e30611;
+		border-radius: 10px;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+	}
+
+	.charityPay__pay_token:hover,
+	.charityPay__button:hover,
+	.charityPay__link:hover {
+		box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.25);
+	}
+	.charityPay__pay_token:active,
+	.charityPay__button:active,
+	.charityPay__link:active {
+		box-shadow: inset 2px 3px rgba(0, 0, 0, 0.25);
+	}
+
+	.charityPay__button {
+		width: 100%;
+		font-size: 18px;
+		font-weight: 600;
+		margin-top: 20px;
+
+		color: white;
+		background-color: #e30611;
+		padding: 10px 0;
+		border-radius: 10px;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: all 300ms ease-in-out;
+		border: none;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+	}
+</style>
