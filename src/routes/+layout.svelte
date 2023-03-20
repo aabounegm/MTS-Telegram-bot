@@ -12,6 +12,6 @@
 		height: calc(100% - 48px);
 		padding: 24px 20px;
 
-		background-color: #e9e9e9;
+		background-color: #f6f6f6;
 	}
 </style>

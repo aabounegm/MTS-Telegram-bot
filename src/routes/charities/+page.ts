@@ -2,7 +2,7 @@ import type { PageLoad } from './$types';
 import { FUNDS_ASSETS_BASE, type TCharity } from '$lib/types/charity';
 
 export const load: PageLoad = async () => {
-	return charityPrograms;
+	return { data: charityPrograms };
 };
 
 const charityPrograms: TCharity[] = [
