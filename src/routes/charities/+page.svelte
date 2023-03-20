@@ -12,7 +12,7 @@
 <div class="charities">
 	<h1 class="charities__title">Charities</h1>
 
-	{#each data.flatMap((c) => c.programs) as { serviceCode, fundLogo, fundName, serviceDescription, fundUrl }}
+	{#each data.data.flatMap((c) => c.programs) as { serviceCode, fundLogo, fundName, serviceDescription, fundUrl }}
 		<div class="program" id={serviceCode}>
 			<div class="program__info">
 				<img class="program__logo" src={fundLogo} alt={fundName} />
