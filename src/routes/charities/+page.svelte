@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import CopyIcon from '$lib/icons/Copy.svelte';
-	import { browser } from '$app/environment';
 
 	export let data: PageData;
 
