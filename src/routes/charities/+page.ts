@@ -1,5 +1,5 @@
 import type { PageLoad } from './$types';
-import { FUNDS_ASSETS_BASE, type TCharity } from '$lib/types/charity';
+import { FUNDS_ASSETS_BASE, type TCharity } from '$lib/api/charity';
 
 export const load: PageLoad = async () => {
 	return { data: charityPrograms };
