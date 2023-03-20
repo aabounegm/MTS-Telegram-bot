@@ -7,10 +7,6 @@
 
 	let value: number | null = null;
 
-	const handleAmountTokenClick = (amount: number) => {
-		value = amount;
-	};
-
 	const amountTokens = [
 		{
 			title: '50 ₽',
@@ -45,9 +41,9 @@
 			<div class="charityPay__pay_amounts">
 				{#each amountTokens as { title, amount }}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<span on:click={() => handleAmountTokenClick(amount)} class="charityPay__pay_token">
+					<button on:click={() => (value = amount)} class="charityPay__pay_token">
 						{title}
-					</span>
+					</button>
 				{/each}
 			</div>
 		</div>
