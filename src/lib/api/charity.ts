@@ -1,11 +1,24 @@
-import type { PageLoad } from './$types';
-import { FUNDS_ASSETS_BASE, type TCharity } from '$lib/types/charity';
-
-export const load: PageLoad = async () => {
-	return { data: charityPrograms };
+export type TCharityProgram = {
+	serviceName: string;
+	serviceCode: string;
+	fundName: string;
+	serviceDescription: string;
+	fundUrl: string;
+	/** The name of the logo file to be appended to the base URL (https://test.mospay.mos.ru/mospaynew/newportal/assets/images/charity/) after URL encoding */
+	fundLogo: string;
+	minimum: number;
 };
 
-const charityPrograms: TCharity[] = [
+export type TCharity = {
+	code: string;
+	name: string;
+	programs: TCharityProgram[];
+};
+
+export const API_BASE = 'https://test.mospay.mos.ru/mospaynew';
+export const FUNDS_ASSETS_BASE = API_BASE + '/newportal/assets/images/charity/';
+
+export const sampleCharities: TCharity[] = [
 	{
 		code: 'ADULTS0001',
 		name: 'Взрослые',
