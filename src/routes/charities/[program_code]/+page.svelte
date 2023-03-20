@@ -37,7 +37,7 @@
 		<p class="charityPay__description">{program.serviceDescription}</p>
 		<div class="charityPay__pay">
 			<h2 class="charityPay__pay_title">Select amount to donate</h2>
-			<input placeholder="250 ₽" class="charityPay__pay_input" type="number" {value} />
+			<input placeholder="250 ₽" class="charityPay__pay_input" type="number" bind:value />
 			<div class="charityPay__pay_amounts">
 				{#each amountTokens as { title, amount }}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
