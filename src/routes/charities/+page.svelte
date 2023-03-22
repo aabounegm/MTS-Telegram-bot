@@ -11,7 +11,6 @@
 
 <div class="charities">
 	<h1 class="charities__title">Charities</h1>
-
 	{#each data.charities.flatMap((c) => c.programs) as { serviceCode, fundLogo, fundName, serviceDescription, fundUrl }}
 		<a class="program" id={serviceCode} href="/charities/{serviceCode}">
 			<div class="program__info">
@@ -49,7 +48,7 @@
 
 	.program {
 		background-color: #f6f6f6;
-
+		text-decoration: none;
 		padding: 8px 12px;
 
 		gap: 8px;
