@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import CopyIcon from '$lib/icons/Copy.svelte';
+	import { FUNDS_ASSETS_BASE } from '$lib/api/charity';
 
 	export let data: PageData;
 
@@ -14,7 +15,11 @@
 	{#each data.charities.flatMap((c) => c.programs) as { serviceCode, fundLogo, fundName, serviceDescription, fundUrl }}
 		<a class="program" id={serviceCode} href="/charities/{serviceCode}">
 			<div class="program__info">
-				<img class="program__logo" src={fundLogo} alt={fundName} />
+				<img
+					class="program__logo"
+					src={FUNDS_ASSETS_BASE + encodeURIComponent(fundLogo)}
+					alt={fundName}
+				/>
 				<h2 class="program__title">{fundName}</h2>
 
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
