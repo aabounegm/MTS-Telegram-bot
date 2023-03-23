@@ -25,6 +25,8 @@ export const load: LayoutServerLoad = async ({ fetch, cookies, url }) => {
 		return {
 			charities: sampleCharities,
 		};
+	} else {
+		cookies.set('accessToken', accessToken, { path: '/' });
 	}
 	const charities: TCharity[] = (await res.json()).charityCatalog;
 	return { charities };
