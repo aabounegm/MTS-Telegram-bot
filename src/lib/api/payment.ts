@@ -29,6 +29,9 @@ export async function pay(program: TCharityProgram, amount: number) {
 				id1: '0',
 			},
 		}),
+		headers: {
+			'Content-Type': 'application/json',
+		},
 	});
 	const data: PaymentRequestResult = await res.json();
 	if (data.resultCode != '0') {
