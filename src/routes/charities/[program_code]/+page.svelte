@@ -27,6 +27,10 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Charities | {program.serviceName}</title>
+</svelte:head>
+
 <div class="charityPay">
 	<div class="charityPay__content">
 		<span class="charityPay__subtitle">{program.fundName}</span>
