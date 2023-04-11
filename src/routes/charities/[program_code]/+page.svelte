@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pay } from '$lib/api/payment';
+	import { getPaymentUrl } from '$lib/api/payment';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -19,7 +19,13 @@
 			alert('This minimum amount for this charity is ' + program.minimum);
 			return;
 		}
-		await pay(program, value);
+		try {
+			const paymentUrl = await getPaymentUrl(program, value);
+			window.location.href = paymentUrl;
+		} catch (e) {
+			const err = e as Error;
+			alert('An error occurred: ' + err.message);
+		}
 	}
 </script>
 

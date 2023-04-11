@@ -1,4 +1,3 @@
-import { goto } from '$app/navigation';
 import type { TCharityProgram } from './charity';
 import { API_BASE } from './mts';
 
@@ -11,7 +10,7 @@ interface PaymentRequestResult {
 	paymentUrl: string;
 }
 
-export async function pay(program: TCharityProgram, amount: number) {
+export async function getPaymentUrl(program: TCharityProgram, amount: number) {
 	const res = await fetch(PAYMENT_URL, {
 		method: 'POST',
 		body: JSON.stringify({
@@ -34,8 +33,8 @@ export async function pay(program: TCharityProgram, amount: number) {
 		},
 	});
 	const data: PaymentRequestResult = await res.json();
-	if (data.resultCode != '0') {
+	if (data.resultCode !== '0') {
 		throw new Error(data.resultDescription);
 	}
-	goto(data.paymentUrl);
+	return data.paymentUrl;
 }
