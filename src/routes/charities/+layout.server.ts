@@ -1,6 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
-import { API_BASE, getAccessTokenUrl, sampleCharities, type TCharity } from '$lib/api/charity';
+import { sampleCharities, type TCharity } from '$lib/api/charity';
+import { API_BASE, getAccessTokenUrl } from '$lib/api/mts';
 
 export const load: LayoutServerLoad = async ({ fetch, cookies, url }) => {
 	let accessToken = url.searchParams.get('accessToken') ?? cookies.get('accessToken');
