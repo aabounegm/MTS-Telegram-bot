@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { pay } from '$lib/api/payment';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -25,6 +26,18 @@
 			amount: 500,
 		},
 	];
+
+	async function triggerPayment() {
+		if (value == null || value <= 0) {
+			alert('Please enter a valid amount');
+			return;
+		}
+		if (value < program.minimum) {
+			alert('This minimum amount for this charity is ' + program.minimum);
+			return;
+		}
+		await pay(program, value);
+	}
 </script>
 
 <svelte:head>
@@ -44,7 +57,6 @@
 			<input placeholder="250 ₽" class="charityPay__pay_input" type="number" bind:value />
 			<div class="charityPay__pay_amounts">
 				{#each amountTokens as { title, amount }}
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<button on:click={() => (value = amount)} class="charityPay__pay_token">
 						{title}
 					</button>
@@ -52,7 +64,7 @@
 			</div>
 		</div>
 	</div>
-	<button class="charityPay__button">Pay</button>
+	<button class="charityPay__button" on:click={triggerPayment}>Pay</button>
 </div>
 
 <style>
