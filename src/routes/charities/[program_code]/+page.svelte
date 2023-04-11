@@ -8,24 +8,7 @@
 
 	let value: number | null = null;
 
-	const amountTokens = [
-		{
-			title: '50 ₽',
-			amount: 50,
-		},
-		{
-			title: '100 ₽',
-			amount: 100,
-		},
-		{
-			title: '200 ₽',
-			amount: 200,
-		},
-		{
-			title: '500 ₽',
-			amount: 500,
-		},
-	];
+	const amounts = [50, 100, 200, 500];
 
 	async function triggerPayment() {
 		if (value == null || value <= 0) {
@@ -56,9 +39,9 @@
 			<h2 class="charityPay__pay_title">Select amount to donate</h2>
 			<input placeholder="250 ₽" class="charityPay__pay_input" type="number" bind:value />
 			<div class="charityPay__pay_amounts">
-				{#each amountTokens as { title, amount }}
+				{#each amounts as amount}
 					<button on:click={() => (value = amount)} class="charityPay__pay_token">
-						{title}
+						{amount} ₽
 					</button>
 				{/each}
 			</div>
