@@ -9,9 +9,8 @@ bot.start((ctx) => {
 		'Welcome!',
 		Markup.keyboard(
 			[
-				Markup.button.webApp('Fines', `${BASE_URL}/fines` /* !ctx.session.loggedIn */),
-				Markup.button.webApp('Charities', `${BASE_URL}/charities` /* !ctx.session.loggedIn */),
-				Markup.button.webApp('Login', `${BASE_URL}/login` /* ctx.session.loggedIn */),
+				Markup.button.webApp('Fines', `${BASE_URL}/fines`),
+				Markup.button.webApp('Charities', `${BASE_URL}/charities`),
 			],
 			{
 				columns: 2,
