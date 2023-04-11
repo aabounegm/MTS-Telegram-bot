@@ -1,16 +1,8 @@
-import { Telegraf, Markup, session, type TelegramError, type Context } from 'telegraf';
-import type { Update } from 'telegraf/types';
+import { Telegraf, Markup, type TelegramError } from 'telegraf';
 import { dev, building } from '$app/environment';
 import { TELEGRAM_BOT_TOKEN, BASE_URL } from '$env/static/private';
 
-interface MyContext<U extends Update = Update> extends Context<U> {
-	session: {
-		loggedIn: boolean;
-	};
-}
-
-const bot = new Telegraf<MyContext>(TELEGRAM_BOT_TOKEN);
-bot.use(session({ defaultSession: () => ({ loggedIn: false as boolean }) }));
+const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
 
 bot.start((ctx) => {
 	ctx.reply(
