@@ -10,6 +10,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Charities</title>
+</svelte:head>
+
 <div class="charities">
 	<h1 class="charities__title">Charities</h1>
 	{#each data.charities.flatMap((c) => c.programs) as { serviceCode, fundLogo, fundName, serviceDescription, fundUrl }}

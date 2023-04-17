@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getPaymentUrl } from '$lib/api/payment';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -7,25 +8,30 @@
 
 	let value: number | null = null;
 
-	const amountTokens = [
-		{
-			title: '50 ₽',
-			amount: 50,
-		},
-		{
-			title: '100 ₽',
-			amount: 100,
-		},
-		{
-			title: '200 ₽',
-			amount: 200,
-		},
-		{
-			title: '500 ₽',
-			amount: 500,
-		},
-	];
+	const amounts = [50, 100, 200, 500];
+
+	async function triggerPayment() {
+		if (value == null || value <= 0) {
+			alert('Please enter a valid amount');
+			return;
+		}
+		if (value < program.minimum) {
+			alert('This minimum amount for this charity is ' + program.minimum);
+			return;
+		}
+		try {
+			const paymentUrl = await getPaymentUrl(program, value);
+			window.location.href = paymentUrl;
+		} catch (e) {
+			const err = e as Error;
+			alert('An error occurred: ' + err.message);
+		}
+	}
 </script>
+
+<svelte:head>
+	<title>Charities | {program.serviceName}</title>
+</svelte:head>
 
 <div class="charityPay">
 	<div class="charityPay__content">
@@ -39,16 +45,15 @@
 			<h2 class="charityPay__pay_title">Select amount to donate</h2>
 			<input placeholder="250 ₽" class="charityPay__pay_input" type="number" bind:value />
 			<div class="charityPay__pay_amounts">
-				{#each amountTokens as { title, amount }}
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
+				{#each amounts as amount}
 					<button on:click={() => (value = amount)} class="charityPay__pay_token">
-						{title}
+						{amount} ₽
 					</button>
 				{/each}
 			</div>
 		</div>
 	</div>
-	<button class="charityPay__button">Pay</button>
+	<button class="charityPay__button" on:click={triggerPayment}>Pay</button>
 </div>
 
 <style>
