@@ -1,12 +1,9 @@
+import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
+import { type TFines, sampleFines } from '$lib/api/fines';
 
-interface User {
-	email: string;
-	password: string;
-}
+export const load: PageServerLoad = async () => {
+	const fines: TFines = sampleFines;
 
-export const load: PageServerLoad = (event) => {
-	return {
-		user: JSON.parse(event.cookies.get('user')!) as User,
-	};
+	return { fines };
 };
