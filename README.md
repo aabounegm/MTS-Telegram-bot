@@ -26,3 +26,8 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 The recommended way to run the production build is using `npm start` because it also sets the appropriate headers for CSRF protection.
+
+## Links
+
+- [Figma Wireframes](https://www.figma.com/file/f0ipxQO7EQmMrSeXW0M6rV/MTS-Payment-Chatbot?t=RXGbWw3SsGixbyep-1)
+- [Figma UI/UX](https://www.figma.com/file/mIyMUy1M3fvHMk0wtLGZje/MTS-Payment-Chatbot---HiFi-Design?t=RXGbWw3SsGixbyep-1)
