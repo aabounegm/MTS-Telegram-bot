@@ -29,7 +29,7 @@ The recommended way to run the production build is using `npm start` because it 
 
 ## Demo
 
-MTS Payment Telegram bot is available at the following link: [MTS Payment Telegram Bot](https://t.me/mts_mos_pay_bot){:target="_blank"}
+MTS Payment Telegram bot is available at the following link: [MTS Payment Telegram Bot](https://t.me/mts_mos_pay_bot)
 
 ## Links
 
