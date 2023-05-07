@@ -27,6 +27,10 @@ You can preview the production build with `npm run preview`.
 
 The recommended way to run the production build is using `npm start` because it also sets the appropriate headers for CSRF protection.
 
+## Demo
+
+MTS Payment Telegram bot is available at the following link: [MTS Payment Telegram Bot](https://t.me/mts_mos_pay_bot)
+
 ## Links
 
 - [Figma Wireframes](https://www.figma.com/file/f0ipxQO7EQmMrSeXW0M6rV/MTS-Payment-Chatbot?t=RXGbWw3SsGixbyep-1)
