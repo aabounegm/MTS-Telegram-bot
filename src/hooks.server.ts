@@ -14,3 +14,4 @@ export const handle: Handle = async function ({ event, resolve }) {
 	const response = await resolve(event);
 	return response;
 };
+

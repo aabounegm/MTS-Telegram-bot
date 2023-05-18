@@ -35,3 +35,4 @@ MTS Payment Telegram bot is available at the following link: [MTS Payment Telegr
 
 - [Figma Wireframes](https://www.figma.com/file/f0ipxQO7EQmMrSeXW0M6rV/MTS-Payment-Chatbot?t=RXGbWw3SsGixbyep-1)
 - [Figma UI/UX](https://www.figma.com/file/mIyMUy1M3fvHMk0wtLGZje/MTS-Payment-Chatbot---HiFi-Design?t=RXGbWw3SsGixbyep-1)
+- [Project Notion Repo](https://www.notion.so/guvictory/MTS-ChatBot-b2a3a8b3cb1c4c4eb9fa1d71f9acccdd)
