@@ -56,7 +56,7 @@
 	}
 
 	.program {
-		background-color: #f6f6f6;
+		background-color: white;
 		text-decoration: none;
 		padding: 8px 12px;
 
@@ -66,7 +66,7 @@
 		justify-content: space-between;
 		border-radius: 10px;
 		margin-bottom: 10px;
-		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.05);
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	}
 
 	.program__logo {
@@ -87,6 +87,7 @@
 	}
 
 	.program__title {
+		width: calc(100% - 50px);
 		margin: 0;
 		font-weight: 600;
 		font-size: 16px;
