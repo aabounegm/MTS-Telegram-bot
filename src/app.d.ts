@@ -3,7 +3,9 @@
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			sql: postgres.Sql<{}>;
+		}
 		// interface PageData {}
 		// interface Platform {}
 	}
