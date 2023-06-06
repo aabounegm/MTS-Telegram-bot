@@ -7,15 +7,12 @@ const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
 bot.start((ctx) => {
 	ctx.reply(
 		'Welcome!',
-		Markup.keyboard(
-			[
-				Markup.button.webApp('Fines', `${BASE_URL}/fines`),
-				Markup.button.webApp('Charities', `${BASE_URL}/charities`),
-			],
-			{
-				columns: 2,
-			},
-		).resize(true),
+		// Normal Keyboard Buttons do not support initData, so we have to use inlineKeyboard
+		// More info: https://core.telegram.org/bots/webapps#webappinitdata
+		Markup.inlineKeyboard([
+			Markup.button.webApp('Fines', `${BASE_URL}/fines`),
+			Markup.button.webApp('Charities', `${BASE_URL}/charities`),
+		]),
 	);
 });
 
