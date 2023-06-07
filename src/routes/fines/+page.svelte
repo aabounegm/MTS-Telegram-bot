@@ -1,8 +1,28 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import type { TFines } from '$lib/api/fines';
 	import Calendar from '$lib/icons/Calendar.svelte';
+	import { onMount } from 'svelte';
 
-	export let data: PageData;
+	let fines: TFines = { chargeResponseList: [] };
+
+	onMount(async () => {
+		const res = await fetch('/api/fines', {
+			method: 'POST',
+			body: JSON.stringify({
+				initData: Telegram.WebApp.initData,
+			}),
+			headers: {
+				'content-type': 'application/json',
+			},
+		});
+		const data = await res.json();
+		if (!res.ok) {
+			// Data is an error message. Probably something with validating
+			alert('Error: ' + data.message);
+			return;
+		}
+		fines = data.fines;
+	});
 </script>
 
 <svelte:head>
@@ -11,7 +31,7 @@
 
 <div class="fines">
 	<h1 class="fines__title">Fines</h1>
-	{#each data.fines.chargeResponseList.map((fine) => fine) as { amountToPay, billDate, billFor }}
+	{#each fines.chargeResponseList.map((fine) => fine) as { amountToPay, billDate, billFor }}
 		<a class="fine" id={billFor} href="/fines/{billFor}">
 			<div class="fine__title">{billFor}</div>
 			<div class="fine__date-line">
