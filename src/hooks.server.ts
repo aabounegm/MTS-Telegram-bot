@@ -1,7 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
 import postgres from 'postgres';
 import { POSTGRES_URL } from '$env/static/private';
-import type { Doc } from '$lib/api/document';
 import { startBot } from './telegram';
 
 startBot().then(() => {
