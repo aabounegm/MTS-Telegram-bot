@@ -17,6 +17,11 @@ export const handle: Handle = async function ({ event, resolve }) {
 	event.locals = {
 		sql: sql,
 	};
+	// await sql`CREATE TABLE IF NOT EXISTS documents (
+	// 	chat_id BIGINT PRIMARY KEY NOT NULL,
+	// 	doc_type TEXT NOT NULL,
+	// 	doc_value TEXT NOT NULL
+	// )`;
 
 	const response = await resolve(event);
 	await sql.end();
