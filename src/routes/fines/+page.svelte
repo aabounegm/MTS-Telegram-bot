@@ -62,7 +62,6 @@
 	}
 
 	.fine {
-		background-color: #f6f6f6;
 		text-decoration: none;
 		padding: 8px 12px;
 
