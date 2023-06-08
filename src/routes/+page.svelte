@@ -3,5 +3,6 @@
 </svelte:head>
 
 <a href="/fines">Fines</a>
+<a href="/docs">Docs</a>
 <a href="/charities">Charities</a>
 <a href="/login">Login</a>
