@@ -10,6 +10,9 @@ type DocResponse = {
 
 export async function getDoc(initData: string) {
 	const res = await fetch('/api/docs?' + initData);
+	if (!res.ok) {
+		throw new Error((await res.json()).message);
+	}
 	const data: DocResponse | null = await res.json();
 	if (data == null) return null;
 	return {

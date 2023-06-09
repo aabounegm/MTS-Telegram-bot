@@ -5,9 +5,13 @@
 	let value: string;
 
 	onMount(async () => {
-		const data = await getDoc(Telegram.WebApp.initData);
-		if (data) {
-			({ type, value } = data);
+		try {
+			const data = await getDoc(Telegram.WebApp.initData);
+			if (data) {
+				({ type, value } = data);
+			}
+		} catch (e) {
+			alert(e);
 		}
 	});
 
