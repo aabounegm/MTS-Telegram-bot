@@ -28,10 +28,6 @@
 		gap: 20px;
 	}
 
-	p {
-		font-family: system-ui;
-	}
-
 	.button:hover {
 		box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.25);
 	}
