@@ -36,7 +36,10 @@
 </svelte:head>
 
 <div class="fines">
-	<h1 class="fines__title">Fines</h1>
+	<div class="header">
+		<h1 class="fines__title">Fines</h1>
+		<a class="link" href="/docs">Edit docs</a>
+	</div>
 	{#each fines.chargeResponseList.map((fine) => fine) as { amountToPay, billDate, billFor }}
 		<a class="fine" id={billFor} href="/fines/{billFor}">
 			<div class="fine__title">{billFor}</div>
@@ -55,10 +58,32 @@
 		justify-content: flex-start;
 		align-items: stretch;
 	}
+	.header {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 10px;
+	}
+	.link {
+		text-decoration: none;
+		color: white;
+		background-color: #e30611;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+		padding: 5px 10px;
+		border-radius: 10px;
+		cursor: pointer;
+		border: none;
+	}
+	.link:hover {
+		box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.25);
+	}
+	.link:active {
+		box-shadow: inset 2px 3px rgba(0, 0, 0, 0.25);
+	}
 
 	.fines__title {
 		align-self: flex-start;
 		margin-top: 0;
+		margin-bottom: 0;
 
 		font-weight: 600;
 		font-size: 26px;

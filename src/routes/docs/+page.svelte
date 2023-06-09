@@ -27,7 +27,10 @@
 	<title>Manage your documents</title>
 </svelte:head>
 
-<h1>Add your document information</h1>
+<header>
+	<h1>Add your document information</h1>
+	<a href="/fines" class="link">Go back</a>
+</header>
 
 <form class="card" on:submit|preventDefault={save}>
 	<label class="doc-type">
@@ -47,6 +50,31 @@
 </form>
 
 <style>
+	header {
+		display: flex;
+		justify-content: space-between;
+		margin: 20px 0;
+	}
+	h1 {
+		margin: 0;
+		font-size: 1.5em;
+	}
+	.link {
+		text-decoration: none;
+		color: white;
+		background-color: #e30611;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+		padding: 5px 10px;
+		border-radius: 10px;
+		cursor: pointer;
+		border: none;
+	}
+	.link:hover {
+		box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.25);
+	}
+	.link:active {
+		box-shadow: inset 2px 3px rgba(0, 0, 0, 0.25);
+	}
 	.card {
 		background-color: white;
 		border-radius: 10px;
