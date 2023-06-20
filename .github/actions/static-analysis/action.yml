@@ -1,5 +1,5 @@
 name: Static code analysis
-description: Performs linting with ESLint and svelte-check, checks code style with Prettier 
+description: Performs linting with ESLint and svelte-check, checks code style with Prettier
 
 runs:
   using: 'composite'
@@ -7,7 +7,7 @@ runs:
     - name: ESLint & Prettier
       shell: bash
       run: npm run lint
-      
+
     - name: svelte-check
       shell: bash
       continue-on-error: true

@@ -1,10 +1,9 @@
-name: Quality Controll on pull request
+name: Quality Control on pull request
 
-on: 
+on:
   pull_request:
-    types: [opened, synchronize, reopened]
     schedule:
-      - cron:  '30 5,17 * * *'
+      - cron: '30 5,17 * * *'
 
 jobs:
   static_analysis:
