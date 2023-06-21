@@ -2,8 +2,6 @@ name: Quality Control on pull request
 
 on:
   pull_request:
-    schedule:
-      - cron: '30 5,17 * * *'
 
 jobs:
   static_analysis:
