@@ -27,3 +27,5 @@ export const handle: Handle = async function ({ event, resolve }) {
 	await sql.end();
 	return response;
 };
+
+

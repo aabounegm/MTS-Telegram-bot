@@ -34,7 +34,9 @@
 		"vitest": "^0.25.3"
 	},
 	"dependencies": {
+		"@rollup/plugin-json": "^6.0.0",
 		"postgres": "^3.3.5",
+		"svelte-i18n": "^3.6.0",
 		"telegraf": "^4.12.1"
 	},
 	"type": "module"

@@ -1,14 +1,24 @@
 <script lang="ts">
-	import { DocType, getDoc, updateDoc } from '$lib/api/document';
+	import { _, locale } from 'svelte-i18n';
+	import { getDoc, updateDoc, type DocResponse } from '$lib/api/document';
 	import { onMount } from 'svelte';
 	let type: string;
 	let value: string;
+	let serverDoc: DocResponse | null = null;
+
+	const docTypes = {
+		passwort: $_('docs.docTypes.passport'),
+	};
 
 	onMount(async () => {
+		if (Telegram.WebApp.initDataUnsafe.user?.language_code) {
+			locale.set(Telegram.WebApp.initDataUnsafe.user?.language_code);
+		}
+
 		try {
-			const data = await getDoc(Telegram.WebApp.initData);
-			if (data) {
-				({ type, value } = data);
+			serverDoc = await getDoc(Telegram.WebApp.initData);
+			if (serverDoc) {
+				({ type, value } = serverDoc);
 			}
 		} catch (e) {
 			alert(e);
@@ -16,37 +26,39 @@
 	});
 
 	async function save() {
-		const data = await updateDoc(Telegram.WebApp.initData, type, value);
-		({ type, value } = data);
+		serverDoc = await updateDoc(Telegram.WebApp.initData, type, value);
+		({ type, value } = serverDoc);
 
-		alert('Data saved successfully');
+		alert($_('docs.success'));
 	}
 </script>
 
 <svelte:head>
-	<title>Manage your documents</title>
+	<title>{$_('docs.title')}</title>
 </svelte:head>
 
 <header>
-	<h1>Add your document information</h1>
-	<a href="/fines" class="link">Go back</a>
+	<h1>{$_('docs.add')}</h1>
+	{#if serverDoc}
+		<a href="/fines" class="link">{$_('main.back')}</a>
+	{/if}
 </header>
 
 <form class="card" on:submit|preventDefault={save}>
 	<label class="doc-type">
-		Document type
+		{$_('docs.type')}
 		<select bind:value={type}>
-			{#each Object.entries(DocType) as [value, docName]}
+			{#each Object.entries(docTypes) as [value, docName]}
 				<option {value}>{docName}</option>
 			{/each}
 		</select>
 	</label>
 	<label class="doc-value">
-		Value
+		{$_('docs.value')}
 		<input type="text" bind:value />
 	</label>
 
-	<button type="submit">Save</button>
+	<button type="submit">{$_('docs.save')}</button>
 </form>
 
 <style>

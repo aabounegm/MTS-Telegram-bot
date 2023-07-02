@@ -1,21 +1,29 @@
 <script lang="ts">
+	import { _, locale } from 'svelte-i18n';
 	import type { PageData } from './$types';
 	import CopyIcon from '$lib/icons/Copy.svelte';
 	import { FUNDS_ASSETS_BASE } from '$lib/api/charity';
+	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
 	const copyCharityUrl = (text: string) => {
 		navigator.clipboard.writeText(text);
 	};
+
+	onMount(async () => {
+		if (Telegram.WebApp.initDataUnsafe.user?.language_code) {
+			locale.set(Telegram.WebApp.initDataUnsafe.user?.language_code);
+		}
+	});
 </script>
 
 <svelte:head>
-	<title>Charities</title>
+	<title>{$_('charities.title')}</title>
 </svelte:head>
 
 <div class="charities">
-	<h1 class="charities__title">Charities</h1>
+	<h1 class="charities__title">{$_('charities.title')}</h1>
 	{#each data.charities.flatMap((c) => c.programs) as { serviceCode, fundLogo, fundName, serviceDescription, fundUrl }}
 		<a class="program" id={serviceCode} href="/charities/{serviceCode}">
 			<div class="program__info">

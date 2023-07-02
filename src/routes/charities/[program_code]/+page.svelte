@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { _, locale } from 'svelte-i18n';
 	import { getPaymentUrl } from '$lib/api/payment';
 	import type { PageData } from './$types';
+	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
@@ -12,11 +14,11 @@
 
 	async function triggerPayment() {
 		if (value == null || value <= 0) {
-			alert('Please enter a valid amount');
+			alert($_('charities.errors.notValid'));
 			return;
 		}
 		if (value < program.minimum) {
-			alert('This minimum amount for this charity is ' + program.minimum);
+			alert($_('charities.errors.badAmount') + program.minimum);
 			return;
 		}
 		try {
@@ -24,13 +26,19 @@
 			window.location.href = paymentUrl;
 		} catch (e) {
 			const err = e as Error;
-			alert('An error occurred: ' + err.message);
+			alert($_('main.error') + err.message);
 		}
 	}
+
+	onMount(async () => {
+		if (Telegram.WebApp.initDataUnsafe.user?.language_code) {
+			locale.set(Telegram.WebApp.initDataUnsafe.user?.language_code);
+		}
+	});
 </script>
 
 <svelte:head>
-	<title>Charities | {program.serviceName}</title>
+	<title>{$_('charities.title')} | {program.serviceName}</title>
 </svelte:head>
 
 <div class="charityPay">
@@ -38,11 +46,11 @@
 		<span class="charityPay__subtitle">{program.fundName}</span>
 		<div class="charityPay__header">
 			<h1 class="charityPay__title">{program.serviceName}</h1>
-			<a href="/charities" class="charityPay__link">Back</a>
+			<a href="/charities" class="charityPay__link">{$_('main.back')}</a>
 		</div>
 		<p class="charityPay__description">{program.serviceDescription}</p>
 		<div class="charityPay__pay">
-			<h2 class="charityPay__pay_title">Select amount to donate</h2>
+			<h2 class="charityPay__pay_title">{$_('charities.amount')}</h2>
 			<input placeholder="250 ₽" class="charityPay__pay_input" type="number" bind:value />
 			<div class="charityPay__pay_amounts">
 				{#each amounts as amount}
@@ -53,7 +61,7 @@
 			</div>
 		</div>
 	</div>
-	<button class="charityPay__button" on:click={triggerPayment}>Pay</button>
+	<button class="charityPay__button" on:click={triggerPayment}>{$_('charities.pay')}</button>
 </div>
 
 <style>

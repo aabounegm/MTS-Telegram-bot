@@ -1,8 +1,4 @@
-export enum DocType {
-	PASSPORT = 'Passport',
-}
-
-type DocResponse = {
+export type DocResponse = {
 	chat_id: number;
 	doc_type: string;
 	doc_value: string;

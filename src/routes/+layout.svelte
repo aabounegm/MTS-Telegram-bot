@@ -1,10 +1,22 @@
 <script>
 	import '../app.css';
+	import { _, getLocaleFromNavigator, isLoading, register, init } from 'svelte-i18n';
+
+	register('en', () => import('../langs/en.json'));
+	register('ru', () => import('../langs/ru.json'));
+	init({
+		fallbackLocale: 'en',
+		initialLocale: getLocaleFromNavigator(),
+	});
 </script>
 
-<main>
-	<slot />
-</main>
+{#if $isLoading}
+	<p>Loading</p>
+{:else}
+	<main>
+		<slot />
+	</main>
+{/if}
 
 <style>
 	main {

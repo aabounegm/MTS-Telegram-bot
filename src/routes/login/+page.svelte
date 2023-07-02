@@ -1,21 +1,31 @@
 <script lang="ts">
+	import { _, locale } from 'svelte-i18n';
 	import { page } from '$app/stores';
 	import { getAccessTokenUrl } from '$lib/api/mts';
+	import { onMount } from 'svelte';
+
+	console.log(window);
 
 	function goToLogin() {
 		const redirectUrl = $page.url.searchParams.get('redirectUrl') ?? window.location.origin;
 		const loginUrl = getAccessTokenUrl(redirectUrl);
 		window.location.href = loginUrl;
 	}
+
+	onMount(async () => {
+		if (Telegram.WebApp.initDataUnsafe.user?.language_code) {
+			locale.set(Telegram.WebApp.initDataUnsafe.user?.language_code);
+		}
+	});
 </script>
 
 <svelte:head>
-	<title>Login</title>
+	<title>{$_('login.title')}</title>
 </svelte:head>
 
 <div>
-	<p>You're not logged in. To access this page, please click on the button below</p>
-	<button class="button" on:click={goToLogin}>Login</button>
+	<p>{$_('login.unAuth')}</p>
+	<button class="button" on:click={goToLogin}>{$_('login.login')}</button>
 </div>
 
 <style>

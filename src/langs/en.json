@@ -1,0 +1,43 @@
+{
+	"nav": {
+		"fines": "Fines",
+		"docs": "Docs",
+		"charities": "Charities",
+		"login": "Login"
+	},
+	"main": {
+		"fines": "Fines",
+		"charities": "Сharities",
+		"back": "Go back",
+		"error": "An error occurred: ",
+		"loading": "Loading"
+	},
+	"login": {
+		"unAuth": "You're not logged in. To access this page, please click on the button below",
+		"login": "Login"
+	},
+	"fines": {
+		"title": "Fines",
+		"button": "Edit docs"
+	},
+	"charities": {
+		"title": "Charities",
+		"amount": "Select amount to donate",
+		"pay": "Pay",
+		"errors": {
+			"notValid": "Please enter a valid amount",
+			"badAmount": "This minimum amount for this charity is "
+		}
+	},
+	"docs": {
+		"title": "Manage your documents",
+		"add": "Add your document information",
+		"type": "Document type",
+		"value": "Value",
+		"save": "Save",
+		"success": "Data saved successfully",
+		"docTypes": {
+			"passport": "Passport"
+		}
+	}
+}
