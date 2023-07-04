@@ -1,0 +1,29 @@
+name: Quality Control on pull request
+
+on:
+  pull_request:
+
+jobs:
+  static_analysis:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Setup Node env and cache dependencies
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run static code anaylysis
+        uses: ./.github/actions/static-analysis

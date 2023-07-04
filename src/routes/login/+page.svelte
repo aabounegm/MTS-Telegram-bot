@@ -53,4 +53,30 @@
 		border: none;
 		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 	}
+
+	.button:hover {
+		box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.25);
+	}
+
+	.button:active {
+		box-shadow: inset 2px 3px rgba(0, 0, 0, 0.25);
+	}
+
+	.button {
+		margin-top: auto;
+		width: 100%;
+		font-size: 18px;
+		font-weight: 600;
+		margin-top: 20px;
+
+		color: white;
+		background-color: #e30611;
+		padding: 10px 0;
+		border-radius: 10px;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: all 300ms ease-in-out;
+		border: none;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+	}
 </style>
