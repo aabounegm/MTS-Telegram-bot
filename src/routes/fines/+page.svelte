@@ -47,7 +47,9 @@
 			<div class="fine__date-line">
 				<Calendar /><span class="fine__date">{billDate.split('T')[0]}</span>
 			</div>
-			<div class="fine__money">{amountToPay}₽</div>
+			<div class="fine__money">
+				{Intl.NumberFormat('ru', { style: 'currency', currency: 'RUB' }).format(amountToPay)}
+			</div>
 		</a>
 	{/each}
 </div>
