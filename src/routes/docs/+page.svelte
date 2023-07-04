@@ -1,14 +1,15 @@
 <script lang="ts">
-	import { DocType, getDoc, updateDoc } from '$lib/api/document';
+	import { DocType, getDoc, updateDoc, type Doc } from '$lib/api/document';
 	import { onMount } from 'svelte';
 	let type: string;
 	let value: string;
+	let serverDoc: Doc | null = null;
 
 	onMount(async () => {
 		try {
-			const data = await getDoc(Telegram.WebApp.initData);
-			if (data) {
-				({ type, value } = data);
+			serverDoc = await getDoc(Telegram.WebApp.initData);
+			if (serverDoc) {
+				({ type, value } = serverDoc);
 			}
 		} catch (e) {
 			alert(e);
@@ -16,8 +17,8 @@
 	});
 
 	async function save() {
-		const data = await updateDoc(Telegram.WebApp.initData, type, value);
-		({ type, value } = data);
+		serverDoc = await updateDoc(Telegram.WebApp.initData, type, value);
+		({ type, value } = serverDoc);
 
 		alert('Data saved successfully');
 	}
@@ -29,7 +30,9 @@
 
 <header>
 	<h1>Add your document information</h1>
-	<a href="/fines" class="link">Go back</a>
+	{#if serverDoc}
+		<a href="/fines" class="link">Go back</a>
+	{/if}
 </header>
 
 <form class="card" on:submit|preventDefault={save}>

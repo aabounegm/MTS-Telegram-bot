@@ -2,13 +2,18 @@ export enum DocType {
 	PASSPORT = 'Passport',
 }
 
+export type Doc = {
+	type: string;
+	value: string;
+};
+
 type DocResponse = {
 	chat_id: number;
 	doc_type: string;
 	doc_value: string;
 };
 
-export async function getDoc(initData: string) {
+export async function getDoc(initData: string): Promise<Doc | null> {
 	const res = await fetch('/api/docs?' + initData);
 	if (!res.ok) {
 		throw new Error((await res.json()).message);
@@ -21,7 +26,7 @@ export async function getDoc(initData: string) {
 	};
 }
 
-export async function updateDoc(initData: string, docType: string, docValue: string) {
+export async function updateDoc(initData: string, docType: string, docValue: string): Promise<Doc> {
 	const res = await fetch('/api/docs', {
 		method: 'PUT',
 		body: JSON.stringify({
