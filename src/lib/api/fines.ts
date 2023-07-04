@@ -8,8 +8,6 @@ export type TFine = {
 	amountToPay: number;
 };
 
-// export const FINES_ASSETS_BASE = API_BASE + '/newportal/assets/images/charity/';
-
 export const sampleFines: TFines = {
 	chargeResponseList: [
 		{
