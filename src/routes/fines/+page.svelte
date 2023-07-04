@@ -42,7 +42,7 @@
 		<a class="link" href="/docs">Edit docs</a>
 	</div>
 	{#each fines.chargeResponseList.map((fine) => fine) as { amountToPay, billDate, billFor }}
-		<a class="fine" id={billFor} href="/fines/{billFor}">
+		<a class="fine" href="/fines/{billFor}">
 			<div class="fine__title">{billFor}</div>
 			<div class="fine__date-line">
 				<Calendar /><span class="fine__date">{billDate.split('T')[0]}</span>
