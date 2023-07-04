@@ -2,7 +2,7 @@
 	import { getDoc } from '$lib/api/document';
 	import type { TFines } from '$lib/api/fines';
 	import Calendar from '$lib/icons/Calendar.svelte';
-	import { redirect } from '@sveltejs/kit';
+	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 
 	let fines: TFines = { chargeResponseList: [] };
@@ -10,7 +10,8 @@
 	onMount(async () => {
 		const doc = await getDoc(Telegram.WebApp.initData);
 		if (doc == null) {
-			throw redirect(307, '/docs');
+			await goto('/docs', { replaceState: true });
+			return;
 		}
 		const res = await fetch('/api/fines', {
 			method: 'POST',
