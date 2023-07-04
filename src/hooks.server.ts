@@ -1,4 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
+import postgres from 'postgres';
+import { POSTGRES_URL } from '$env/static/private';
 import { startBot } from './telegram';
 
 startBot().then(() => {
@@ -11,6 +13,17 @@ export const handle: Handle = async function ({ event, resolve }) {
 		event.cookies.set('accessToken', accessToken, { path: '/' });
 	}
 
+	const sql = postgres(POSTGRES_URL);
+	event.locals = {
+		sql: sql,
+	};
+	// await sql`CREATE TABLE IF NOT EXISTS documents (
+	// 	chat_id BIGINT PRIMARY KEY NOT NULL,
+	// 	doc_type TEXT NOT NULL,
+	// 	doc_value TEXT NOT NULL
+	// )`;
+
 	const response = await resolve(event);
+	await sql.end();
 	return response;
 };

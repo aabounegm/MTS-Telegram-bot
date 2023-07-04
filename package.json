@@ -19,6 +19,7 @@
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-node": "^1.2.1",
 		"@sveltejs/kit": "^1.5.0",
+		"@types/telegram-web-app": "^6.7.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"eslint": "^8.28.0",
@@ -36,6 +37,7 @@
 		"vitest": "^0.25.3"
 	},
 	"dependencies": {
+		"postgres": "^3.3.5",
 		"telegraf": "^4.12.1"
 	},
 	"type": "module"
