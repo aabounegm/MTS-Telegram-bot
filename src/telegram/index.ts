@@ -1,8 +1,9 @@
 import { Telegraf, Markup, type TelegramError } from 'telegraf';
 import { dev, building } from '$app/environment';
-import { TELEGRAM_BOT_TOKEN, BASE_URL } from '$env/static/private';
+import { BASE_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
-const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
+const bot = new Telegraf(env.TELEGRAM_BOT_TOKEN);
 
 bot.start((ctx) => {
 	ctx.reply(

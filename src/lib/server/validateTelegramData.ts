@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { TELEGRAM_BOT_TOKEN } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 export const validateTelegramData = (initData: string) => {
 	const data = new URLSearchParams(initData);
@@ -9,7 +9,7 @@ export const validateTelegramData = (initData: string) => {
 	data.sort();
 	const dataCheckString = decodeURIComponent(data.toString()).split('&').join('\n');
 
-	const secret = crypto.createHmac('SHA256', 'WebAppData').update(TELEGRAM_BOT_TOKEN);
+	const secret = crypto.createHmac('SHA256', 'WebAppData').update(env.TELEGRAM_BOT_TOKEN);
 	const checkHash = crypto
 		.createHmac('SHA256', secret.digest())
 		.update(dataCheckString)
