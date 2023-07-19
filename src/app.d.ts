@@ -8,6 +8,7 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			sql: Sql;
+			accessToken: string;
 		}
 		// interface PageData {}
 		// interface Platform {}
