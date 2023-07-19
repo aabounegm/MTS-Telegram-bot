@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { getDoc } from '$lib/api/document';
-	import type { TFines } from '$lib/api/fines';
+	import type { TFine } from '$lib/api/fines';
 	import Calendar from '$lib/icons/Calendar.svelte';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 
-	let fines: TFines = { chargeResponseList: [] };
+	let fines: TFine[] = [];
 
 	onMount(async () => {
 		const doc = await getDoc(Telegram.WebApp.initData);
@@ -22,12 +22,13 @@
 				'content-type': 'application/json',
 			},
 		});
-		const data = await res.json();
 		if (!res.ok) {
-			// Data is an error message. Probably something with validating
-			alert('Error: ' + data.message);
+			const err = await res.json();
+			// Data is an error message. Either data not ready or initData not valid
+			alert('Error: ' + err.message);
 			return;
 		}
+		const data: { fines: TFine[] } = await res.json();
 		fines = data.fines;
 	});
 </script>
@@ -41,7 +42,7 @@
 		<h1 class="fines__title">Fines</h1>
 		<a class="link" href="/docs">Edit docs</a>
 	</div>
-	{#each fines.chargeResponseList.map((fine) => fine) as { amountToPay, billDate, billFor }}
+	{#each fines.map((fine) => fine) as { amountToPay, billDate, billFor }}
 		<a class="fine" href="/fines/{billFor}">
 			<div class="fine__title">{billFor}</div>
 			<div class="fine__date-line">
