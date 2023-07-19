@@ -1,6 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
 import postgres from 'postgres';
-import { POSTGRES_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { startBot } from './telegram';
 
 startBot().then(() => {
@@ -13,7 +13,7 @@ export const handle: Handle = async function ({ event, resolve }) {
 		event.cookies.set('accessToken', accessToken, { path: '/' });
 	}
 
-	const sql = postgres(POSTGRES_URL);
+	const sql = postgres(env.POSTGRES_URL);
 	event.locals = {
 		sql: sql,
 	};
