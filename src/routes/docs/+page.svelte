@@ -5,7 +5,7 @@
 	let value: string;
 	let serverDoc: Doc | null = null;
 
-	const docValues = Object.keys(DocType) as DocType[];
+	const docValues = Object.values(DocType) as DocType[];
 
 	onMount(async () => {
 		try {
