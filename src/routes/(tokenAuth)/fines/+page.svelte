@@ -49,7 +49,7 @@
 				<Calendar /><span class="fine__date">{billDate.split('T')[0]}</span>
 			</div>
 			<div class="fine__money">
-				{Intl.NumberFormat('ru', { style: 'currency', currency: 'RUB' }).format(amountToPay)}
+				{Intl.NumberFormat('ru', { style: 'currency', currency: 'RUB' }).format(amountToPay / 100)}
 			</div>
 		</a>
 	{/each}
