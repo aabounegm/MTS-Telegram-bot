@@ -1,6 +1,12 @@
 export enum DocType {
-	PASSPORT = 'Passport',
+	PASSPORT = '01',
+	STS = '24',
 }
+
+export const docName: Record<DocType, string> = {
+	[DocType.PASSPORT]: 'Passport',
+	[DocType.STS]: 'STS',
+};
 
 export type Doc = {
 	type: string;

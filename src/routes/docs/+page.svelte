@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { DocType, getDoc, updateDoc, type Doc } from '$lib/api/document';
+	import { DocType, getDoc, updateDoc, docName, type Doc } from '$lib/api/document';
 	import { onMount } from 'svelte';
 	let type: string;
 	let value: string;
 	let serverDoc: Doc | null = null;
+
+	const docValues = Object.keys(DocType) as DocType[];
 
 	onMount(async () => {
 		try {
@@ -39,8 +41,8 @@
 	<label class="doc-type">
 		Document type
 		<select bind:value={type}>
-			{#each Object.entries(DocType) as [value, docName]}
-				<option {value}>{docName}</option>
+			{#each docValues as value}
+				<option {value}>{docName[value]}</option>
 			{/each}
 		</select>
 	</label>
