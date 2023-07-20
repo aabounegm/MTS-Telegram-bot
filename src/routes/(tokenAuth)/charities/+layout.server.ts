@@ -3,8 +3,8 @@ import type { LayoutServerLoad } from './$types';
 import { sampleCharities, type TCharity } from '$lib/api/charity';
 import { API_BASE } from '$lib/api/mts';
 
-export const load: LayoutServerLoad = async ({ fetch, cookies, url, parent }) => {
-	const { accessToken } = await parent();
+export const load: LayoutServerLoad = async ({ fetch, cookies, url, locals }) => {
+	const { accessToken } = locals;
 	const res = await fetch(API_BASE + '/rnip2/charges/charitycatalog', {
 		headers: {
 			Authorization: `Bearer ${accessToken}`,
