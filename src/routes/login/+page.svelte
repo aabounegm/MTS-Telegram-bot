@@ -44,7 +44,7 @@
 		margin-top: 20px;
 
 		color: white;
-		background-color: #e30611;
+		background-color: #f20000;
 		padding: 10px 0;
 		border-radius: 10px;
 		text-transform: uppercase;
@@ -70,7 +70,7 @@
 		margin-top: 20px;
 
 		color: white;
-		background-color: #e30611;
+		background-color: #f20000;
 		padding: 10px 0;
 		border-radius: 10px;
 		text-transform: uppercase;
