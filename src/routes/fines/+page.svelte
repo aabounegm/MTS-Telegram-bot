@@ -69,7 +69,7 @@
 	.link {
 		text-decoration: none;
 		color: white;
-		background-color: #e30611;
+		background-color: #f20000;
 		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 		padding: 5px 10px;
 		border-radius: 10px;
@@ -135,6 +135,6 @@
 		font-weight: 600;
 		font-size: 14px;
 		line-height: 17px;
-		color: #e30611;
+		color: #f20000;
 	}
 </style>
