@@ -67,7 +67,7 @@
 	.link {
 		text-decoration: none;
 		color: white;
-		background-color: #e30611;
+		background-color: #f20000;
 		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 		padding: 5px 10px;
 		border-radius: 10px;
@@ -107,7 +107,7 @@
 		margin-top: 40px;
 
 		color: white;
-		background-color: #e30611;
+		background-color: #f20000;
 		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 		padding: 10px 0;
 		border-radius: 10px;

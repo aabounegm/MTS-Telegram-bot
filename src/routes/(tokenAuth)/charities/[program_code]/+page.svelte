@@ -142,7 +142,7 @@
 
 	.charityPay__pay_input:focus {
 		outline: 0;
-		border: 1px solid #e30611;
+		border: 1px solid #f20000;
 	}
 
 	.charityPay__pay_amounts {
@@ -163,7 +163,7 @@
 		width: max-content;
 		padding: 4px 11px;
 		color: #ffffff;
-		background-color: #e30611;
+		background-color: #f20000;
 		border-radius: 10px;
 		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 	}
@@ -186,7 +186,7 @@
 		margin-top: 20px;
 
 		color: white;
-		background-color: #e30611;
+		background-color: #f20000;
 		padding: 10px 0;
 		border-radius: 10px;
 		text-transform: uppercase;
