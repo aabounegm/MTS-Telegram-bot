@@ -1,34 +1,25 @@
 export type TFines = {
+	requestUID: string;
+	/** if resultCode is 9996 you have to re-request after some time. if you get resultCode=0, then it is ready. */
+	resultCode: string;
+	resultDescription: string;
 	chargeResponseList: TFine[];
 };
 
 export type TFine = {
+	/** ISO timestamp (with timezone) */
+	validUntil: string;
+	/** Title */
 	billFor: string;
+	totalAmount: string;
+	changeStatus: {
+		meaning: string;
+	};
+	additionalData: Array<{ name: string; value: string }>;
+	supplierBillID: string;
+	/** ISO timestamp (with timezone) */
 	billDate: string;
 	amountToPay: number;
-};
-
-export const sampleFines: TFines = {
-	chargeResponseList: [
-		{
-			billFor: 'Aliqua enim cillum qui culpa cupidatat amet do est amet cupidatat.',
-			billDate: new Date().toISOString(),
-			amountToPay: 100,
-		},
-		{
-			billFor: 'Aliqua enim cillum qui culpa cupidatat amet do est amet cupidatat.',
-			billDate: new Date().toISOString(),
-			amountToPay: 100,
-		},
-		{
-			billFor: 'Aliqua enim cillum qui culpa cupidatat amet do est amet cupidatat.',
-			billDate: new Date().toISOString(),
-			amountToPay: 100,
-		},
-		{
-			billFor: 'Aliqua enim cillum qui culpa cupidatat amet do est amet cupidatat.',
-			billDate: new Date().toISOString(),
-			amountToPay: 100,
-		},
-	],
+	chargeType: 'FINES';
+	revoked: boolean;
 };

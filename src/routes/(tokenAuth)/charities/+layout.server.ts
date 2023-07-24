@@ -3,14 +3,8 @@ import type { LayoutServerLoad } from './$types';
 import { sampleCharities, type TCharity } from '$lib/api/charity';
 import { API_BASE } from '$lib/api/mts';
 
-export const load: LayoutServerLoad = async ({ fetch, cookies, url }) => {
-	const accessToken = url.searchParams.get('accessToken') ?? cookies.get('accessToken');
-	if (accessToken == undefined) {
-		// No access token found. Go to the MTS login page, and redirect to the same page again
-		// SvelteKit seems to default it to HTTP during dev
-		const redirectUrl = url.href.replace('http:', 'https:');
-		throw redirect(307, `/login?redirectUrl=${redirectUrl}`);
-	}
+export const load: LayoutServerLoad = async ({ fetch, cookies, url, locals }) => {
+	const { accessToken } = locals;
 	const res = await fetch(API_BASE + '/rnip2/charges/charitycatalog', {
 		headers: {
 			Authorization: `Bearer ${accessToken}`,
