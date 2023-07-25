@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getPaymentUrl } from '$lib/api/payment';
+	import { getCharityPaymentUrl } from '$lib/api/payment';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -20,7 +20,7 @@
 			return;
 		}
 		try {
-			const paymentUrl = await getPaymentUrl(program, value);
+			const paymentUrl = await getCharityPaymentUrl(program, value);
 			window.location.href = paymentUrl;
 		} catch (e) {
 			const err = e as Error;

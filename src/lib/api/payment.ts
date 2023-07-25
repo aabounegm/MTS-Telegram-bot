@@ -10,7 +10,7 @@ interface PaymentRequestResult {
 	paymentUrl: string;
 }
 
-export async function getPaymentUrl(program: TCharityProgram, amount: number) {
+export async function getCharityPaymentUrl(program: TCharityProgram, amount: number) {
 	const res = await fetch(PAYMENT_URL, {
 		method: 'POST',
 		body: JSON.stringify({
