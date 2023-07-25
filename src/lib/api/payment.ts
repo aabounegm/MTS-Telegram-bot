@@ -1,4 +1,5 @@
 import type { TCharityProgram } from './charity';
+import type { TFine } from './fines';
 import { API_BASE } from './mts';
 
 const PAYMENT_URL = API_BASE + '/payment/register';
@@ -26,6 +27,35 @@ export async function getCharityPaymentUrl(program: TCharityProgram, amount: num
 				Narrative: program.serviceName,
 				id1Formatted: program.fundName,
 				id1: '0',
+			},
+		}),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	const data: PaymentRequestResult = await res.json();
+	if (data.resultCode !== '0') {
+		throw new Error(data.resultDescription);
+	}
+	return data.paymentUrl;
+}
+
+export async function getFinePaymentUrl(fine: TFine) {
+	const res = await fetch(PAYMENT_URL, {
+		method: 'POST',
+		body: JSON.stringify({
+			portal: {
+				portalId: 'SUPERAPP',
+			},
+			amount: fine.amountToPay,
+			service: {
+				paymentType: 'FINES',
+				uin: fine.supplierBillID,
+			},
+			serviceParams: {
+				// Narrative: program.serviceName,
+				// id1Formatted: program.fundName,
+				// id1: '0',
 			},
 		}),
 		headers: {
