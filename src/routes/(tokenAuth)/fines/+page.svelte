@@ -42,8 +42,8 @@
 		<h1 class="fines__title">Fines</h1>
 		<a class="link" href="/docs">Edit docs</a>
 	</div>
-	{#each fines.map((fine) => fine) as { amountToPay, billDate, billFor }}
-		<a class="fine" href="/fines/{billFor}">
+	{#each fines.map((fine) => fine) as { amountToPay, billDate, billFor, supplierBillID }}
+		<a class="fine" href="/fines/{supplierBillID}">
 			<div class="fine__title">{billFor}</div>
 			<div class="fine__date-line">
 				<Calendar /><span class="fine__date">{billDate.split('T')[0]}</span>
