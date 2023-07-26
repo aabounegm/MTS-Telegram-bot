@@ -52,11 +52,7 @@ export async function getFinePaymentUrl(fine: TFine) {
 				paymentType: 'FINES',
 				uin: fine.supplierBillID,
 			},
-			serviceParams: {
-				// Narrative: program.serviceName,
-				// id1Formatted: program.fundName,
-				// id1: '0',
-			},
+			serviceParams: {},
 		}),
 		headers: {
 			'Content-Type': 'application/json',
