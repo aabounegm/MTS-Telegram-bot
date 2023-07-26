@@ -9,8 +9,22 @@ export type TFines = {
 export type TFine = {
 	/** ISO timestamp (with timezone) */
 	validUntil: string;
+	supplierOrgInfo: {
+		name: string;
+		inn: string;
+		kpp: string;
+		orgn: string;
+		account: {
+			accountNumber: string;
+			bank: {
+				bik: string;
+				correspondentBankAccount: string;
+			};
+		};
+	};
 	/** Title */
 	billFor: string;
+	/** In kopek. Divide by 100 to get rubles */
 	totalAmount: string;
 	changeStatus: {
 		meaning: string;
