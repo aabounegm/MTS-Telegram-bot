@@ -6,6 +6,8 @@
 	import { onMount } from 'svelte';
 
 	let fines: TFine[] = [];
+	let loading = true;
+	let seconds = 0;
 
 	onMount(async () => {
 		const doc = await getDoc(Telegram.WebApp.initData);
@@ -18,10 +20,28 @@
 			const err = await res.json();
 			// Data is an error message. Either data not ready or initData not valid
 			alert('Error: ' + err.message);
+			loading = false;
 			return;
 		}
-		const data: { fines: TFine[] } = await res.json();
-		fines = data.fines;
+		const requestId = await res.text();
+
+		const interval = setInterval(async () => {
+			seconds++;
+			const res = await fetch('/api/fines/' + requestId);
+			if (res.ok) {
+				clearInterval(interval);
+				const data: { fines: TFine[] } = await res.json();
+				fines = data.fines;
+				loading = false;
+			} else if (res.status === 503) {
+				// Still loading, do nothing
+			} else {
+				clearInterval(interval);
+				loading = false;
+				const err: Error = await res.json();
+				alert('An error occurred: ' + err.message);
+			}
+		}, 1000);
 	});
 </script>
 
@@ -34,17 +54,28 @@
 		<h1 class="fines__title">Fines</h1>
 		<a class="link" href="/docs">Edit docs</a>
 	</div>
-	{#each fines.map((fine) => fine) as { amountToPay, billDate, billFor, supplierBillID }}
-		<a class="fine" href="/fines/{supplierBillID}">
-			<div class="fine__title">{billFor}</div>
-			<div class="fine__date-line">
-				<Calendar /><span class="fine__date">{billDate.split('T')[0]}</span>
-			</div>
-			<div class="fine__money">
-				{Intl.NumberFormat('ru', { style: 'currency', currency: 'RUB' }).format(amountToPay / 100)}
-			</div>
-		</a>
-	{/each}
+	{#if loading}
+		<p>Waiting for the data to load...</p>
+		<p>{seconds} seconds have passed</p>
+		<p>If the data doesn't load within 1-2 minutes, try to refresh the page.</p>
+	{:else}
+		{#each fines.map((fine) => fine) as { amountToPay, billDate, billFor, supplierBillID }}
+			<a class="fine" href="/fines/{supplierBillID}">
+				<div class="fine__title">{billFor}</div>
+				<div class="fine__date-line">
+					<Calendar />
+					<span class="fine__date">{billDate.split('T')[0]}</span>
+				</div>
+				<div class="fine__money">
+					{Intl.NumberFormat('ru', { style: 'currency', currency: 'RUB' }).format(
+						amountToPay / 100,
+					)}
+				</div>
+			</a>
+		{:else}
+			<p>You have no fines! Congratulations on being a law-abiding citizen ;)</p>
+		{/each}
+	{/if}
 </div>
 
 <style>

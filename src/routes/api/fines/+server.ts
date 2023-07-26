@@ -55,19 +55,8 @@ export const GET: RequestHandler = async ({ fetch, url, locals, cookies }) => {
 	});
 	const requestPath = await linkRes.text();
 
-	const finesRes = await fetch(API_BASE + '/rnip2' + requestPath, {
-		headers: {
-			Authorization: `Bearer ${accessToken}`,
-		},
-	});
-	const fines: TFines = await finesRes.json();
-	if (fines.resultCode === '9996') {
-		throw error(503, {
-			message: 'The server is still processing your request, please try again later.',
-		});
-	}
-
+	// Delegate the responsibility of polling to the frontend
 	return json({
-		fines: fines.chargeResponseList,
+		requestId: requestPath.split('/').at(-1),
 	});
 };
