@@ -13,15 +13,7 @@
 			await goto('/docs', { replaceState: true });
 			return;
 		}
-		const res = await fetch('/api/fines', {
-			method: 'POST',
-			body: JSON.stringify({
-				initData: Telegram.WebApp.initData,
-			}),
-			headers: {
-				'content-type': 'application/json',
-			},
-		});
+		const res = await fetch('/api/fines?initData=' + encodeURIComponent(Telegram.WebApp.initData));
 		if (!res.ok) {
 			const err = await res.json();
 			// Data is an error message. Either data not ready or initData not valid

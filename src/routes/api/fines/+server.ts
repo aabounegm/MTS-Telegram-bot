@@ -4,9 +4,13 @@ import { validateTelegramData } from '$lib/server/validateTelegramData';
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const POST: RequestHandler = async ({ fetch, request, locals, cookies }) => {
-	const { initData } = await request.json();
-
+export const GET: RequestHandler = async ({ fetch, url, locals, cookies }) => {
+	const initData = url.searchParams.get('initData');
+	if (initData === null) {
+		throw error(400, {
+			message: 'Missing required query param: initData',
+		});
+	}
 	let chatId: number;
 	try {
 		const data = validateTelegramData(initData);
