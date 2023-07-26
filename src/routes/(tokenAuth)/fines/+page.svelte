@@ -8,6 +8,7 @@
 	let fines: TFine[] = [];
 	let loading = true;
 	let seconds = 0;
+	let requestId: string;
 
 	onMount(async () => {
 		const doc = await getDoc(Telegram.WebApp.initData);
@@ -23,7 +24,7 @@
 			loading = false;
 			return;
 		}
-		const requestId = await res.text();
+		({ requestId } = await res.json());
 
 		const interval = setInterval(async () => {
 			seconds++;
@@ -60,7 +61,7 @@
 		<p>If the data doesn't load within 1-2 minutes, try to refresh the page.</p>
 	{:else}
 		{#each fines.map((fine) => fine) as { amountToPay, billDate, billFor, supplierBillID }}
-			<a class="fine" href="/fines/{supplierBillID}">
+			<a class="fine" href="/fines/{supplierBillID}?requestId={requestId}">
 				<div class="fine__title">{billFor}</div>
 				<div class="fine__date-line">
 					<Calendar />
